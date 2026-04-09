@@ -1,0 +1,87 @@
+<!-- stock.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notebooks — Stock actual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+  <div class="site-header__container">
+    <!-- Logo como botón/enlace a inicio -->
+    <a href="index.html" class="site-header__logo">
+  <span class="logo-icon" aria-hidden="true">💻</span>
+  <span class="logo" id="brand-logo">NoteMaster</span>
+</a>
+    
+    <!-- Menú centrado -->
+    <nav class="site-header__nav" aria-label="Principal">
+      <ul>
+        <li><a href="index.html" class="nav__link nav__link--current">Inicio</a></li>
+        <li><a href="stock.html" class="nav__link">Stock actual</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Espaciador invisible -->
+    <div class="site-header__spacer"></div>
+  </div>
+</header>
+
+
+  <main>
+    <section id="stock-hero" class="hero" aria-labelledby="stock-hero-title">
+      <div class="hero__inner">
+        <article class="hero-slide is-active" data-slide="0" aria-hidden="false">
+          <div class="hero-slide__bg" aria-hidden="true">
+            <img
+              class="hero-slide__photo"
+              src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+              alt=""
+              width="1400"
+              height="933"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <div class="hero-slide__inner">
+            <p class="hero__eyebrow">Stock actual</p>
+            <h1 id="stock-hero-title" class="hero-slide__title">
+              🖥️ Notebooks disponibles HOY
+            </h1>
+            <p class="hero__tag">Precios negociables — Consultá sin compromiso</p>
+            <p class="hero__lead">
+              Fotos reales. Escríbenos o mirá el stock.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="stock" class="stock stock--page" aria-labelledby="stock-grid">
+      <!-- Botones de filtro -->
+      <div class="filter-buttons">
+        <button type="button" class="filter-button" id="filter-amd" aria-pressed="false">AMD</button>
+        <button type="button" class="filter-button" id="filter-intel" aria-pressed="false">Intel</button>
+      </div>
+
+      <div class="stock__grid" id="stock-grid" role="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer footer--simple">
+    <p class="footer__simple">&copy; 2026 Notebooks · Todos los derechos reservados</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
