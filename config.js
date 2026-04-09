@@ -4,47 +4,63 @@
  */
 window.NotebookShop = window.NotebookShop || {};
 
+window.NotebookShop = window.NotebookShop || {};
 window.NotebookShop.CONFIG = {
-  nombreVendedor: "",
-  localidad: "Tu localidad",
-  // Número sin + ni espacios (código país + código área + número)
-  whatsapp: "5491112345678",
-  // URLs de tu perfil/página (opcional). Vacío = el ícono abre instagram.com / facebook.com hasta que las completes.
-  instagram: "",
-  facebook: "",
+  nombreVendedor: "NoteMaster",
+  localidad: "Chaco",
+  whatsapp: "543625339969",
+  facebook: "https://www.facebook.com/"
 };
 
+window.NotebookShop.stock = window.NotebookShop.stock || [];
+
 window.NotebookShop.stock = [
-  {
+    {
     id: 1,
-    nombre: "Lenovo ThinkPad T480",
-    especificaciones: "Intel i5, 16GB RAM, 512GB SSD",
-    estado: "Usado - Como nuevo",
-    precio: 550,
-    imagen: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=320&h=200&q=80",
+    nombre: "Dell Latitude 5420",
+    especificaciones: "Intel Core i7 vPro 11va, 16GB DDR4, SSD M.2 500GB, Pantalla 14\" táctil",
+    estado: "Usado - Impecable, totalmente funcional",
+    precio: 625000,
+    imagen: "imagenes/intel/Dell-i7.png",
   },
   {
     id: 2,
-    nombre: "Dell Latitude 7490",
-    especificaciones: "Intel i7, 16GB RAM, 256GB SSD",
-    estado: "Usado - Buen estado",
-    precio: 480,
-    imagen: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=320&h=200&q=80",
+    nombre: "Acer - Nueva en caja",
+    especificaciones: "Intel Core i3 N305 11va Gen, 8GB DDR5, SSD M.2 500GB, Pantalla 15.6\"",
+    estado: "Nueva en caja - Con cargador y papeles",
+    precio: 400000,
+    imagen: "imagenes/intel/Acer-i3.png",  // CAMBIAR POR TU IMAGEN
   },
   {
     id: 3,
-    nombre: "HP EliteBook 840 G5",
-    especificaciones: "Intel i5, 8GB RAM, 256GB SSD",
-    estado: "Usado - Buen estado",
-    precio: 420,
-    imagen: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=320&h=200&q=80",
+    nombre: "Acer - Nueva en caja",
+    especificaciones: "Intel Core i3 N305 11va Gen, 8GB DDR5, SSD M.2 500GB, Pantalla 15.6\"",
+    estado: "Nueva en caja - Con cargador y papeles",
+    precio: 400000,
+    imagen: "imagenes/intel/Acer-i3-2.png",  // CAMBIAR POR TU IMAGEN
   },
   {
     id: 4,
-    nombre: "Acer Aspire 3",
-    especificaciones: "AMD Ryzen 3, 8GB RAM, 128GB SSD",
-    estado: "Usado - Regular (funcional)",
-    precio: 320,
-    imagen: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=320&h=200&q=80",
+    nombre: "Lenovo - i7 10ma Gen",
+    especificaciones: "Intel Core i7 10ma Gen, 12GB DDR4, SSD M.2 1TB, Pantalla 15.6\"",
+    estado: "Usado - Impecable, con caja y cargador original",
+    precio: 600000,
+    imagen: "imagenes/intel/Lenovo-i7.png",  // CAMBIAR POR TU IMAGEN
   },
+  {
+    id: 5,
+    nombre: "Asus - i3 11va",
+    especificaciones: "Intel Core i3 11va, 20GB DDR4, SSD M.2 256GB, Pantalla 15.6\"",
+    estado: "Usado - Impecable, ideal estudio/trabajo",
+    precio: 625000,
+    imagen: "imagenes/intel/Asus-i3.png",  // CAMBIAR POR TU IMAGEN
+  },
+  {
+    id: 6,
+    nombre: "Lenovo - AMD Ryzen 5",
+    especificaciones: "AMD Ryzen 5 7520U, Radeon 2GB, 8GB DDR5, SSD M.2 500GB, Pantalla 15.6\"",
+    estado: "Usado - Impecable, ideal para juegos y programas pesados",
+    precio: 625000,
+    imagen: "imagenes/amd/Lenovo-r5.png",  // CAMBIAR POR TU IMAGEN
+  }
 ];

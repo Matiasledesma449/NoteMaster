@@ -217,34 +217,49 @@ function applyConfig() {
     armTimer();
   }
 
-  function init() {
+    function init() {
     applyConfig();
     applySocial();
-    renderStock(null);
+    
+    // Mostrar SOLO Intel al cargar la página
+    renderStock('intel');
+    
     initHeroCarousel();
 
     // Event listeners para filtros
     var amdBtn = document.getElementById('filter-amd');
     var intelBtn = document.getElementById('filter-intel');
+    
     if (amdBtn) {
       amdBtn.addEventListener('click', function() {
         currentFilter = 'amd';
         renderStock('amd');
         amdBtn.classList.add('is-active');
-        intelBtn.classList.remove('is-active');
+        if (intelBtn) intelBtn.classList.remove('is-active');
         amdBtn.setAttribute('aria-pressed', 'true');
-        intelBtn.setAttribute('aria-pressed', 'false');
+        if (intelBtn) intelBtn.setAttribute('aria-pressed', 'false');
       });
     }
+    
     if (intelBtn) {
       intelBtn.addEventListener('click', function() {
         currentFilter = 'intel';
         renderStock('intel');
         intelBtn.classList.add('is-active');
-        amdBtn.classList.remove('is-active');
+        if (amdBtn) amdBtn.classList.remove('is-active');
         intelBtn.setAttribute('aria-pressed', 'true');
-        amdBtn.setAttribute('aria-pressed', 'false');
+        if (amdBtn) amdBtn.setAttribute('aria-pressed', 'false');
       });
+    }
+    
+    // Marcar el botón Intel como activo al inicio
+    if (intelBtn) {
+      intelBtn.classList.add('is-active');
+      intelBtn.setAttribute('aria-pressed', 'true');
+    }
+    if (amdBtn) {
+      amdBtn.classList.remove('is-active');
+      amdBtn.setAttribute('aria-pressed', 'false');
     }
   }
 

@@ -709,14 +709,14 @@ main {
 
 .card__image {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  height: 500px;           /* cambiá este valor a lo que necesites */
+  object-fit: cover;       /* o contain, según prefieras */
   display: block;
-  background: #334155;
+  background: #000000;     /* fondo negro para los bordes */
 }
 
 .card__body {
-  padding: 1.35rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   flex: 1;
