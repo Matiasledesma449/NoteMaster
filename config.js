@@ -9,7 +9,7 @@ window.NotebookShop.CONFIG = {
   nombreVendedor: "NoteMaster",
   localidad: "Chaco",
   whatsapp: "543625339969",
-  facebook: "https://www.facebook.com/"
+  facebook: "https://www.facebook.com/marketplace/profile/100001094980011/"
 };
 
 window.NotebookShop.stock = window.NotebookShop.stock || [];
