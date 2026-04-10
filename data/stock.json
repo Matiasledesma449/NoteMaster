@@ -1,0 +1,22 @@
+{
+  "computadoras": [
+    {
+      "id": 1,
+      "nombre": "Dell Latitude 5420",
+      "especificaciones": "Intel Core i7 vPro 11va, 16GB DDR4, SSD M.2 500GB, Pantalla 14\" táctil",
+      "estado": "Usado - Impecable, totalmente funcional",
+      "precio": 625000,
+      "imagen": "/imagenes/intel/Dell-i7.png",
+      "tipo": "intel"
+    },
+    {
+      "id": 2,
+      "nombre": "Acer - Nueva en caja",
+      "especificaciones": "Intel Core i3 N305 11va Gen, 8GB DDR5, SSD M.2 500GB, Pantalla 15.6\"",
+      "estado": "Nueva en caja - Con cargador y papeles",
+      "precio": 400000,
+      "imagen": "/imagenes/intel/Acer-i3.png",
+      "tipo": "intel"
+    }
+  ]
+}

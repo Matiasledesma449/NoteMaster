@@ -85,47 +85,20 @@ function applyConfig() {
     }
   }
 
-  function renderStock(filter) {
-    var grid = document.getElementById("stock-grid");
-    if (!grid) return;
+  // Buscá esta línea dentro de renderStock:
+var filteredStock = filter ? stock.filter(function (item) {
+  return item.especificaciones.toLowerCase().includes(filter.toLowerCase());
+}) : stock;
 
-    var filteredStock = filter ? stock.filter(function (item) {
-      return item.especificaciones.toLowerCase().includes(filter.toLowerCase());
-    }) : stock;
-
-    grid.innerHTML = filteredStock
-      .map(function (item) {
-        var consulta = waUrl(mensajeConsulta(item.nombre));
-        var precio = formatPrecio(item.precio);
-        return (
-          '<article class="card" role="listitem">' +
-          '<img class="card__image" src="' +
-          escapeAttr(item.imagen) +
-          '" alt="' +
-          escapeAttr(item.nombre) +
-          '" width="320" height="200" loading="lazy" />' +
-          '<div class="card__body">' +
-          '<h3 class="card__title">' +
-          escapeHtml(item.nombre) +
-          "</h3>" +
-          '<p class="card__specs">' +
-          escapeHtml(item.especificaciones) +
-          "</p>" +
-          '<p class="card__estado">' +
-          escapeHtml(item.estado) +
-          "</p>" +
-          '<p class="card__price">' +
-          escapeHtml(precio) +
-          "</p>" +
-          '<a class="btn btn--card" href="' +
-          escapeAttr(consulta) +
-          '" rel="noopener noreferrer">💬 Consultar por WhatsApp</a>' +
-          "</div>" +
-          "</article>"
-        );
-      })
-      .join("");
+// Reemplazala por:
+var filteredStock = filter ? stock.filter(function (item) {
+  // Si el item tiene campo 'tipo', úsalo (más preciso)
+  if (item.tipo) {
+    return item.tipo.toLowerCase() === filter.toLowerCase();
   }
+  // Fallback: buscar en especificaciones (para datos viejos)
+  return item.especificaciones.toLowerCase().includes(filter.toLowerCase());
+}) : stock;
 
   function escapeHtml(s) {
     return String(s)
@@ -217,51 +190,73 @@ function applyConfig() {
     armTimer();
   }
 
-    function init() {
-    applyConfig();
-    applySocial();
-    
-    // Mostrar SOLO Intel al cargar la página
-    renderStock('intel');
-    
-    initHeroCarousel();
-
-    // Event listeners para filtros
-    var amdBtn = document.getElementById('filter-amd');
-    var intelBtn = document.getElementById('filter-intel');
-    
-    if (amdBtn) {
-      amdBtn.addEventListener('click', function() {
-        currentFilter = 'amd';
-        renderStock('amd');
-        amdBtn.classList.add('is-active');
-        if (intelBtn) intelBtn.classList.remove('is-active');
-        amdBtn.setAttribute('aria-pressed', 'true');
-        if (intelBtn) intelBtn.setAttribute('aria-pressed', 'false');
-      });
+   // Agregar esta función antes de init()
+async function cargarStockDesdeJSON() {
+  try {
+    const response = await fetch('/data/stock.json');
+    if (!response.ok) throw new Error('No se encontró stock.json');
+    const data = await response.json();
+    // El JSON tiene la forma { computadoras: [...] }
+    if (data.computadoras && Array.isArray(data.computadoras) && data.computadoras.length) {
+      window.NotebookShop.stock = data.computadoras;
+      console.log('✅ Stock cargado desde CMS (JSON)');
+      return true;
     }
-    
-    if (intelBtn) {
-      intelBtn.addEventListener('click', function() {
-        currentFilter = 'intel';
-        renderStock('intel');
-        intelBtn.classList.add('is-active');
-        if (amdBtn) amdBtn.classList.remove('is-active');
-        intelBtn.setAttribute('aria-pressed', 'true');
-        if (amdBtn) amdBtn.setAttribute('aria-pressed', 'false');
-      });
-    }
-    
-    // Marcar el botón Intel como activo al inicio
-    if (intelBtn) {
-      intelBtn.classList.add('is-active');
-      intelBtn.setAttribute('aria-pressed', 'true');
-    }
-    if (amdBtn) {
-      amdBtn.classList.remove('is-active');
-      amdBtn.setAttribute('aria-pressed', 'false');
-    }
+  } catch (error) {
+    console.warn('⚠️ Usando stock local (hardcodeado) - ', error.message);
   }
+  return false;
+}
+
+// Modificá la función init() para que sea async
+async function init() {
+  applyConfig();
+  applySocial();
+  
+  // Cargar stock desde JSON (si existe)
+  await cargarStockDesdeJSON();
+  
+  // Ahora renderizamos con el stock ya actualizado
+  renderStock('intel');   // igual que antes
+  
+  initHeroCarousel();
+
+  // Event listeners para filtros (igual que antes)
+  var amdBtn = document.getElementById('filter-amd');
+  var intelBtn = document.getElementById('filter-intel');
+  
+  if (amdBtn) {
+    amdBtn.addEventListener('click', function() {
+      currentFilter = 'amd';
+      renderStock('amd');
+      amdBtn.classList.add('is-active');
+      if (intelBtn) intelBtn.classList.remove('is-active');
+      amdBtn.setAttribute('aria-pressed', 'true');
+      if (intelBtn) intelBtn.setAttribute('aria-pressed', 'false');
+    });
+  }
+  
+  if (intelBtn) {
+    intelBtn.addEventListener('click', function() {
+      currentFilter = 'intel';
+      renderStock('intel');
+      intelBtn.classList.add('is-active');
+      if (amdBtn) amdBtn.classList.remove('is-active');
+      intelBtn.setAttribute('aria-pressed', 'true');
+      if (amdBtn) amdBtn.setAttribute('aria-pressed', 'false');
+    });
+  }
+  
+  // Marcar el botón Intel como activo al inicio
+  if (intelBtn) {
+    intelBtn.classList.add('is-active');
+    intelBtn.setAttribute('aria-pressed', 'true');
+  }
+  if (amdBtn) {
+    amdBtn.classList.remove('is-active');
+    amdBtn.setAttribute('aria-pressed', 'false');
+  }
+}
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
