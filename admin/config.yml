@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main   # o master
+
+media_folder: "imagenes"
+public_folder: "/imagenes"
+
+collections:
+  - name: "stock"
+    label: "Stock de Computadoras"
+    label_singular: "Computadora"
+    folder: "data"
+    create: false   # No crear archivos separados
+    files:
+      - name: "stock"
+        label: "Lista de computadoras"
+        file: "data/stock.json"
+        fields:
+          - label: "Computadoras"
+            name: "computadoras"
+            widget: "list"
+            summary: "{{fields.nombre}} - {{fields.precio}}"
+            fields:
+              - { label: "ID", name: "id", widget: "number", value_type: "int" }
+              - { label: "Nombre", name: "nombre", widget: "string" }
+              - { label: "Especificaciones", name: "especificaciones", widget: "text" }
+              - { label: "Estado", name: "estado", widget: "string" }
+              - { label: "Precio (ARS)", name: "precio", widget: "number", value_type: "int" }
+              - { label: "Imagen", name: "imagen", widget: "image" }
+              - { label: "Tipo (intel/amd)", name: "tipo", widget: "select", options: ["intel", "amd"], default: "intel" }
